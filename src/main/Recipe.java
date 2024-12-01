@@ -1,4 +1,3 @@
-import javax.security.sasl.RealmChoiceCallback;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,18 +7,19 @@ public class Recipe {
     private String title;
     private String description;
     private String prepTime;
-    private String cookTime;
-    //    private Collection<Binary> image; // to complex for implementation
+    private User creator;
+    //    private List<Binary> image; // to complex for implementation
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Instruction> instructions;
     private Category category;
+    private String cookTime;
 
     public Recipe() {
 
     }
 
     // Constructor
-    public Recipe(String title, String description, String prepTime, String cookTime, Category category, ArrayList<Ingredient> ingredients, ArrayList<Instruction> instructions) {
+    public Recipe(String title, String description, String prepTime, String cookTime, Category category, ArrayList<Ingredient> ingredients, ArrayList<Instruction> instructions, User creator) {
         this.title = title;
         this.description = description;
         this.prepTime = prepTime;
@@ -27,6 +27,7 @@ public class Recipe {
         this.category = category;
         this.ingredients = ingredients;
         this.instructions = instructions;
+        this.creator = creator;
     }
 
     // Getters and Setters
@@ -78,6 +79,14 @@ public class Recipe {
         return instructions;
     }
 
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
     public Recipe addRecipe(Scanner scanner) {
 
         System.out.println("Enter details for the new recipe:");
@@ -105,7 +114,10 @@ public class Recipe {
         System.out.println("Instructions: ");
         instructions.add(Instruction.addInstruction(scanner));
 
-        return new Recipe(title, description, prepTime, cookTime, category, ingredients, instructions);
+        System.out.println("Creator: ");
+        User creator = User.createUser(scanner);
+
+        return new Recipe(title, description, prepTime, cookTime, category, ingredients, instructions, creator);
     }
 
     public void editRecipe(Recipe newRecipe, Recipe oldRecipe) {
@@ -148,10 +160,16 @@ public class Recipe {
         for (Instruction instruction : this.getInstructions()) {
             System.out.println("\tStepNumber: " + instruction.getStepNumber() + ", Description: " + instruction.getStepDescription());
         }
+
+        System.out.println("Creator: " + this.creator.getFirstName() + " " + this.creator.getLastName());
     }
 
     public void filterRecipe() {
         // Logic to filter recipes (e.g., by category, ingredients)
     }
+
+    public void addImage() {}
+
+    public void removeImage() {}
 
 }

@@ -30,6 +30,12 @@ class RecipeTest {
         assertEquals(1, recipe.getInstructions().size());
         assertEquals("Mix ingredients", recipe.getInstructions().get(0).getStepDescription());
         assertEquals(1, recipe.getInstructions().get(0).getStepNumber());
+
+        // User assertions
+        assertEquals("Adam", recipe.getCreator().getFirstName());
+        assertEquals("Smith", recipe.getCreator().getLastName());
+        assertEquals("adam.smith@example.com", recipe.getCreator().getEmail());
+        assertEquals("password", recipe.getCreator().getPassword());
     }
 
     private static Scanner getScanner() {
@@ -43,7 +49,11 @@ class RecipeTest {
                 "cup\n" + // Ingredient unit
                 "1\n" + // Ingredient quantity
                 "Mix ingredients\n" + // Instruction description
-                "1\n"; // Instruction step number
+                "1\n" + // Instruction step number
+                "Adam\n" + // User firstname
+                "Smith\n" + // User lastname
+                "adam.smith@example.com\n" + // User email
+                "password\n";// User password
         return new Scanner(new ByteArrayInputStream(input.getBytes()));
     }
 
@@ -51,9 +61,9 @@ class RecipeTest {
     public void testDeleteRecipe() {
         // Create a list of recipes
         ArrayList<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("Recipe 1", "Desc 1", "10 min", "20 min", new Category("Cat 1", "Desc"), new ArrayList<>(), new ArrayList<>()));
-        recipes.add(new Recipe("Recipe 2", "Desc 2", "15 min", "25 min", new Category("Cat 2", "Desc"), new ArrayList<>(), new ArrayList<>()));
-        recipes.add(new Recipe("Recipe 3", "Desc 3", "20 min", "30 min", new Category("Cat 3", "Desc"), new ArrayList<>(), new ArrayList<>()));
+        recipes.add(new Recipe("Recipe 1", "Desc 1", "10 min", "20 min", new Category("Cat 1", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName1", "lastName1", "email1", "password1")));
+        recipes.add(new Recipe("Recipe 2", "Desc 2", "15 min", "25 min", new Category("Cat 2", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName2", "lastName2", "email2", "password2")));
+        recipes.add(new Recipe("Recipe 3", "Desc 3", "20 min", "30 min", new Category("Cat 3", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName3", "lastName3", "email3", "password3")));
 
         // Simulate user input to delete the second recipe
         String input = "2\n";

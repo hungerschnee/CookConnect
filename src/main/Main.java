@@ -10,6 +10,7 @@ public class Main {
         Instruction instruction = new Instruction("Instruction", 1);
         Ingredient ingredient = new Ingredient("Ingredient name", "Unit", 1);
         Category category = new Category("Category title", "Category description");
+        User creator = new User("Adam", "Smith", "adam.smith@example.com", "password");
 
         ArrayList<Instruction> instructions = new ArrayList<Instruction>();
         ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
@@ -18,7 +19,7 @@ public class Main {
         ingredients.add(ingredient);
 
 
-        Recipe recipe = new Recipe("Recipe Title", "Recipe Description", "10min", "15min", category, ingredients, instructions);
+        Recipe recipe = new Recipe("Recipe Title", "Recipe Description", "10min", "15min", category, ingredients, instructions, creator);
 
         recipe.viewRecipeDetails();
 
