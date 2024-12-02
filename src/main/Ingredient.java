@@ -37,6 +37,7 @@ public class Ingredient {
         this.quantity = quantity;
     }
 
+    // Method to add an ingredient
     public static Ingredient addIngredient(Scanner scanner) {
         System.out.print("Enter ingredient name: ");
         String name = scanner.nextLine();

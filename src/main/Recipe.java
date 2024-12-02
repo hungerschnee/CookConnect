@@ -8,7 +8,7 @@ public class Recipe {
     private String description;
     private String prepTime;
     private User creator;
-    //    private List<Binary> image; // to complex for implementation
+    //    private List<Binary> image; // too complex for implementation
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Instruction> instructions;
     private Category category;
@@ -87,6 +87,7 @@ public class Recipe {
         this.creator = creator;
     }
 
+    // Method for adding a new recipe
     public Recipe addRecipe(Scanner scanner) {
 
         System.out.println("Enter details for the new recipe:");
@@ -108,11 +109,17 @@ public class Recipe {
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         System.out.println("Ingredients: ");
-        ingredients.add(Ingredient.addIngredient(scanner));
+        do {
+            ingredients.add(Ingredient.addIngredient(scanner));
+            System.out.println("more | stop");
+        } while(scanner.nextLine().equalsIgnoreCase("more"));
 
         ArrayList<Instruction> instructions = new ArrayList<>();
         System.out.println("Instructions: ");
-        instructions.add(Instruction.addInstruction(scanner));
+        do {
+            instructions.add(Instruction.addInstruction(scanner));
+            System.out.println("more | stop");
+        } while(scanner.nextLine().equalsIgnoreCase("more"));
 
         System.out.println("Creator: ");
         User creator = User.createUser(scanner);
@@ -121,9 +128,10 @@ public class Recipe {
     }
 
     public void editRecipe(Recipe newRecipe, Recipe oldRecipe) {
-
+        // Logic for editing a recipe
     }
 
+    // Method for deleting a Recipe
     public void deleteRecipe(Scanner scanner, ArrayList<Recipe> recipes) {
         System.out.println("Available Recipes:");
         for (int i = 0; i < recipes.size(); i++) {
@@ -151,15 +159,10 @@ public class Recipe {
         System.out.println("Category: " + this.getCategory().getTitle());
 
         System.out.println("Ingredients: ");
-
-        for (Ingredient ingredient : this.getIngredients()) {
-            System.out.println("\tQuantity: " + ingredient.getQuantity() + ", Unit: " + ingredient.getUnit() + ", Name: " + ingredient.getName());
-        }
+        this.getIngredients().forEach(ingredient -> System.out.println("\tQuantity: " + ingredient.getQuantity() + ", Unit: " + ingredient.getUnit() + ", Name: " + ingredient.getName()));
 
         System.out.println("Instructions:");
-        for (Instruction instruction : this.getInstructions()) {
-            System.out.println("\tStepNumber: " + instruction.getStepNumber() + ", Description: " + instruction.getStepDescription());
-        }
+        this.getInstructions().forEach(instruction -> System.out.println("\tStepNumber: " + instruction.getStepNumber() + ", Description: " + instruction.getStepDescription()));
 
         System.out.println("Creator: " + this.creator.getFirstName() + " " + this.creator.getLastName());
     }
@@ -168,8 +171,12 @@ public class Recipe {
         // Logic to filter recipes (e.g., by category, ingredients)
     }
 
-    public void addImage() {}
+    public void addImage() {
+        // Logic to add an image
+    }
 
-    public void removeImage() {}
+    public void removeImage() {
+        // logic to remove an image
+    }
 
 }
