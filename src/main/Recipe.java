@@ -159,15 +159,10 @@ public class Recipe {
         System.out.println("Category: " + this.getCategory().getTitle());
 
         System.out.println("Ingredients: ");
-
-        for (Ingredient ingredient : this.getIngredients()) {
-            System.out.println("\tQuantity: " + ingredient.getQuantity() + ", Unit: " + ingredient.getUnit() + ", Name: " + ingredient.getName());
-        }
+        this.getIngredients().forEach(ingredient -> System.out.println("\tQuantity: " + ingredient.getQuantity() + ", Unit: " + ingredient.getUnit() + ", Name: " + ingredient.getName()));
 
         System.out.println("Instructions:");
-        for (Instruction instruction : this.getInstructions()) {
-            System.out.println("\tStepNumber: " + instruction.getStepNumber() + ", Description: " + instruction.getStepDescription());
-        }
+        this.getInstructions().forEach(instruction -> System.out.println("\tStepNumber: " + instruction.getStepNumber() + ", Description: " + instruction.getStepDescription()));
 
         System.out.println("Creator: " + this.creator.getFirstName() + " " + this.creator.getLastName());
     }
