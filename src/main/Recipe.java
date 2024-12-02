@@ -109,11 +109,17 @@ public class Recipe {
 
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         System.out.println("Ingredients: ");
-        ingredients.add(Ingredient.addIngredient(scanner));
+        do {
+            ingredients.add(Ingredient.addIngredient(scanner));
+            System.out.println("more | stop");
+        } while(scanner.nextLine().equalsIgnoreCase("more"));
 
         ArrayList<Instruction> instructions = new ArrayList<>();
         System.out.println("Instructions: ");
-        instructions.add(Instruction.addInstruction(scanner));
+        do {
+            instructions.add(Instruction.addInstruction(scanner));
+            System.out.println("more | stop");
+        } while(scanner.nextLine().equalsIgnoreCase("more"));
 
         System.out.println("Creator: ");
         User creator = User.createUser(scanner);
