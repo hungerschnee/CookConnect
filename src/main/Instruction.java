@@ -27,6 +27,7 @@ public class Instruction {
         this.stepNumber = stepNumber;
     }
 
+    // Method to add an instruction step
     public static Instruction addInstruction(Scanner scanner) {
         System.out.print("Enter step description: ");
         String stepDescription = scanner.nextLine();

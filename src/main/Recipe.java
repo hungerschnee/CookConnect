@@ -8,7 +8,7 @@ public class Recipe {
     private String description;
     private String prepTime;
     private User creator;
-    //    private List<Binary> image; // to complex for implementation
+    //    private List<Binary> image; // too complex for implementation
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Instruction> instructions;
     private Category category;
@@ -87,6 +87,7 @@ public class Recipe {
         this.creator = creator;
     }
 
+    // Method for adding a new recipe
     public Recipe addRecipe(Scanner scanner) {
 
         System.out.println("Enter details for the new recipe:");
@@ -121,9 +122,10 @@ public class Recipe {
     }
 
     public void editRecipe(Recipe newRecipe, Recipe oldRecipe) {
-
+        // Logic for editing a recipe
     }
 
+    // Method for deleting a Recipe
     public void deleteRecipe(Scanner scanner, ArrayList<Recipe> recipes) {
         System.out.println("Available Recipes:");
         for (int i = 0; i < recipes.size(); i++) {
@@ -168,8 +170,12 @@ public class Recipe {
         // Logic to filter recipes (e.g., by category, ingredients)
     }
 
-    public void addImage() {}
+    public void addImage() {
+        // Logic to add an image
+    }
 
-    public void removeImage() {}
+    public void removeImage() {
+        // logic to remove an image
+    }
 
 }
