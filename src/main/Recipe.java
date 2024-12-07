@@ -14,11 +14,11 @@ public class Recipe {
     private String cookTime;
     private RecipeState recipeState;
 
+    // Constructors
     public Recipe() {
 
     }
 
-    // Constructor
     public Recipe(String title, String description, String prepTime, String cookTime, Category category, ArrayList<Ingredient> ingredients, ArrayList<Instruction> instructions, User creator) {
         this.title = title;
         this.description = description;
