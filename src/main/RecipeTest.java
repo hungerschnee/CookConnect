@@ -37,6 +37,7 @@ public class RecipeTest {
         assertEquals("Smith", recipe.getCreator().getLastName());
         assertEquals("adam.smith@example.com", recipe.getCreator().getEmail());
         assertEquals("password", recipe.getCreator().getPassword());
+        assertEquals(RecipeState.DRAFT, recipe.getRecipeState());
     }
 
     private static Scanner getScanner() {
@@ -82,5 +83,4 @@ public class RecipeTest {
         assertEquals("Recipe 1", recipes.get(0).getTitle()); // Check if the first recipe remains
         assertEquals("Recipe 3", recipes.get(1).getTitle()); // Check if the third recipe remains
     }
-
 }

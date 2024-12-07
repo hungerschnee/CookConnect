@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Recipe {
-
     private String title;
     private String description;
     private String prepTime;
@@ -13,6 +12,7 @@ public class Recipe {
     private ArrayList<Instruction> instructions;
     private Category category;
     private String cookTime;
+    private RecipeState recipeState;
 
     public Recipe() {
 
@@ -28,6 +28,7 @@ public class Recipe {
         this.ingredients = ingredients;
         this.instructions = instructions;
         this.creator = creator;
+        this.recipeState = RecipeState.DRAFT;
     }
 
     // Getters and Setters
@@ -85,6 +86,14 @@ public class Recipe {
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public RecipeState getRecipeState() {
+        return recipeState;
+    }
+
+    public void setRecipeState(RecipeState recipeState) {
+        this.recipeState = recipeState;
     }
 
     // Method for adding a new recipe
@@ -165,6 +174,7 @@ public class Recipe {
         this.getInstructions().forEach(instruction -> System.out.println("\tStepNumber: " + instruction.getStepNumber() + ", Description: " + instruction.getStepDescription()));
 
         System.out.println("Creator: " + this.creator.getFirstName() + " " + this.creator.getLastName());
+        System.out.println("State: " + this.getRecipeState());
     }
 
     public void filterRecipe() {
