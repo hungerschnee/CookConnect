@@ -1,10 +1,10 @@
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class RecipeTest {
+public class RecipeTest {
     @Test
     public void testAddRecipe() {
         Scanner scanner = getScanner();
@@ -32,6 +32,7 @@ class RecipeTest {
         assertEquals(1, recipe.getInstructions().get(0).getStepNumber());
 
         // User assertions
+        assertNotNull(recipe.getCreator());
         assertEquals("Adam", recipe.getCreator().getFirstName());
         assertEquals("Smith", recipe.getCreator().getLastName());
         assertEquals("adam.smith@example.com", recipe.getCreator().getEmail());
@@ -48,8 +49,10 @@ class RecipeTest {
                 "Flour\n" + // Ingredient name
                 "cup\n" + // Ingredient unit
                 "1\n" + // Ingredient quantity
+                "stop\n" +
                 "Mix ingredients\n" + // Instruction description
                 "1\n" + // Instruction step number
+                "stop\n" +
                 "Adam\n" + // User firstname
                 "Smith\n" + // User lastname
                 "adam.smith@example.com\n" + // User email
@@ -68,6 +71,8 @@ class RecipeTest {
         // Simulate user input to delete the second recipe
         String input = "2\n";
         Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+
+        assertEquals(3, recipes.size()); // Check if the list has three objects
 
         // Call the deleteRecipe method
         new Recipe().deleteRecipe(scanner, recipes);
