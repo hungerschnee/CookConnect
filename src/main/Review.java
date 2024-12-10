@@ -6,16 +6,18 @@ public class Review {
     private double rating;
     private String comment;
     private Date date;
+    private Recipe recipe;
 
     // No args constructor
     public Review() {
     }
 
     // All args constructor
-    public Review(String comment, Date date, double rating) {
+    public Review(String comment, Date date, double rating, Recipe recipe) {
         this.comment = comment;
         this.date = date;
         this.rating = rating;
+        this.recipe = recipe;
     }
 
     // Getters and Setters
@@ -43,9 +45,17 @@ public class Review {
         this.date = date;
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
     // Method for adding a review
-    public Review addReview(Scanner scanner) {
-        System.out.println("Enter details for the review:");
+    public Review writeReview(Scanner scanner, Recipe recipe) {
+        System.out.println("Enter details for the review for the  " + recipe.getTitle() + " recipe:");
 
         System.out.print("Rating (1.0 to 5.0): ");
         double rating = -1;
@@ -74,7 +84,7 @@ public class Review {
         System.out.print("Date: " + formattedDate);
 
         // Return the new Review instance
-        return new Review(comment, date, rating);
+        return new Review(comment, date, rating, recipe);
     }
 
     public void deleteReview(Scanner scanner, Review review) {

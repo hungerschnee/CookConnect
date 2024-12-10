@@ -11,6 +11,7 @@ public class Recipe {
     //    private List<Binary> image; // too complex for implementation
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Instruction> instructions;
+    private ArrayList<Review> reviews;
     private Category category;
     private String cookTime;
 
@@ -77,6 +78,10 @@ public class Recipe {
 
     public List<Instruction> getInstructions() {
         return instructions;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
     }
 
     public User getCreator() {
