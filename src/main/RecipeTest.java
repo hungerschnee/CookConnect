@@ -118,7 +118,8 @@ public class RecipeTest {
                 "Category: Cat 1" + lineSeparator +
                 "Ingredients: " + lineSeparator +
                 "Instructions:" + lineSeparator +
-                "Creator: firstName1 lastName1" + lineSeparator;
+                "Creator: firstName1 lastName1" + lineSeparator +
+                "State: " + RecipeState.DRAFT + lineSeparator;
 
         // Assert that the output matches the expected output
         assertEquals(expectedOutput, outputStream.toString());
