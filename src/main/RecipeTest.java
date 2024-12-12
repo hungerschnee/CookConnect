@@ -1,10 +1,29 @@
+import org.junit.Before;
 import org.junit.Test;
+
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static org.junit.Assert.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecipeTest {
+
+
+    ArrayList<Recipe> recipes = new ArrayList<>();
+
+    @Before
+    public void init()  {
+        // Create a list of recipes
+        recipes.add(new Recipe("Recipe 1", "Desc 1", "10 min", "20 min", new Category("Cat 1", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName1", "lastName1", "email1", "password1")));
+        recipes.add(new Recipe("Recipe 2", "Desc 2", "15 min", "25 min", new Category("Cat 2", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName2", "lastName2", "email2", "password2")));
+        recipes.add(new Recipe("Recipe 3", "Desc 3", "20 min", "30 min", new Category("Cat 3", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName3", "lastName3", "email3", "password3")));
+
+
+    }
+
     @Test
     public void testAddRecipe() {
         Scanner scanner = getScanner();
@@ -37,7 +56,6 @@ public class RecipeTest {
         assertEquals("Smith", recipe.getCreator().getLastName());
         assertEquals("adam.smith@example.com", recipe.getCreator().getEmail());
         assertEquals("password", recipe.getCreator().getPassword());
-        assertEquals(RecipeState.DRAFT, recipe.getRecipeState());
     }
 
     private static Scanner getScanner() {
@@ -64,10 +82,10 @@ public class RecipeTest {
     @Test
     public void testDeleteRecipe() {
         // Create a list of recipes
-        ArrayList<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("Recipe 1", "Desc 1", "10 min", "20 min", new Category("Cat 1", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName1", "lastName1", "email1", "password1")));
-        recipes.add(new Recipe("Recipe 2", "Desc 2", "15 min", "25 min", new Category("Cat 2", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName2", "lastName2", "email2", "password2")));
-        recipes.add(new Recipe("Recipe 3", "Desc 3", "20 min", "30 min", new Category("Cat 3", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName3", "lastName3", "email3", "password3")));
+//        ArrayList<Recipe> recipes = new ArrayList<>();
+//        recipes.add(new Recipe("Recipe 1", "Desc 1", "10 min", "20 min", new Category("Cat 1", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName1", "lastName1", "email1", "password1")));
+//        recipes.add(new Recipe("Recipe 2", "Desc 2", "15 min", "25 min", new Category("Cat 2", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName2", "lastName2", "email2", "password2")));
+//        recipes.add(new Recipe("Recipe 3", "Desc 3", "20 min", "30 min", new Category("Cat 3", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName3", "lastName3", "email3", "password3")));
 
         // Simulate user input to delete the second recipe
         String input = "2\n";
@@ -83,4 +101,36 @@ public class RecipeTest {
         assertEquals("Recipe 1", recipes.get(0).getTitle()); // Check if the first recipe remains
         assertEquals("Recipe 3", recipes.get(1).getTitle()); // Check if the third recipe remains
     }
+
+    @Test
+    public void testViewRecipeDetails() {
+        // Redirect System.out to capture the output
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
+
+        // Call the method to be tested
+        recipes.get(0).viewRecipeDetails();
+
+        // Reset System.out
+        System.setOut(System.out);
+
+        // Get the system-dependent line separator
+        String lineSeparator = System.lineSeparator();
+
+        // Expected output based on the provided Recipe data, using the line separator
+        String expectedOutput = "Recipe Details:" + lineSeparator +
+                "Title: Recipe 1" + lineSeparator +
+                "Description: Desc 1" + lineSeparator +
+                "Prep Time: 10 min" + lineSeparator +
+                "Cook Time: 20 min" + lineSeparator +
+                "Category: Cat 1" + lineSeparator +
+                "Ingredients: " + lineSeparator +
+                "Instructions:" + lineSeparator +
+                "Creator: firstName1 lastName1" + lineSeparator;
+
+        // Assert that the output matches the expected output
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
 }

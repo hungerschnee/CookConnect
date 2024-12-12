@@ -58,5 +58,15 @@ public class User {
         return new User(firstName, lastName, email, password);
     }
 
+    public boolean logIn(String email, String password) {
+        // Logic for user authentication and login --> returns true if user is authenticated, else false
+        return true;
+    }
+
+    public void logOut() {
+        // Logic for logging out
+    }
+
+
 }
 
