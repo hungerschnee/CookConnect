@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RecipeTest {
 
-
     ArrayList<Recipe> recipes = new ArrayList<>();
 
     @Before
@@ -20,8 +19,6 @@ public class RecipeTest {
         recipes.add(new Recipe("Recipe 1", "Desc 1", "10 min", "20 min", new Category("Cat 1", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName1", "lastName1", "email1", "password1")));
         recipes.add(new Recipe("Recipe 2", "Desc 2", "15 min", "25 min", new Category("Cat 2", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName2", "lastName2", "email2", "password2")));
         recipes.add(new Recipe("Recipe 3", "Desc 3", "20 min", "30 min", new Category("Cat 3", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName3", "lastName3", "email3", "password3")));
-
-
     }
 
     @Test
@@ -81,12 +78,6 @@ public class RecipeTest {
 
     @Test
     public void testDeleteRecipe() {
-        // Create a list of recipes
-//        ArrayList<Recipe> recipes = new ArrayList<>();
-//        recipes.add(new Recipe("Recipe 1", "Desc 1", "10 min", "20 min", new Category("Cat 1", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName1", "lastName1", "email1", "password1")));
-//        recipes.add(new Recipe("Recipe 2", "Desc 2", "15 min", "25 min", new Category("Cat 2", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName2", "lastName2", "email2", "password2")));
-//        recipes.add(new Recipe("Recipe 3", "Desc 3", "20 min", "30 min", new Category("Cat 3", "Desc"), new ArrayList<>(), new ArrayList<>(), new User("firstName3", "lastName3", "email3", "password3")));
-
         // Simulate user input to delete the second recipe
         String input = "2\n";
         Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
