@@ -137,9 +137,37 @@ public class Recipe {
 
         System.out.println("Creator: ");
         User creator = User.createUser(scanner);
+        Recipe newRecipe = new Recipe(title, description, prepTime, cookTime, category, ingredients, instructions, creator);
 
-        return new Recipe(title, description, prepTime, cookTime, category, ingredients, instructions, creator);
+        if (!newRecipe.isValidRecipe()) {
+            System.out.println("Recipe creation failed due to validation errors.");
+            return null;
+        }
+
+        return newRecipe;
     }
+
+    // Validation method to ensure the recipe meets basic requirements
+    public boolean isValidRecipe() {
+        if (this.title == null || this.title.trim().isEmpty()) {
+            System.out.println("Validation Error: Recipe title cannot be empty.");
+            return false;
+        }
+        if (this.ingredients == null || this.ingredients.isEmpty()) {
+            System.out.println("Validation Error: Recipe must have at least one ingredient.");
+            return false;
+        }
+        if (this.instructions == null || this.instructions.isEmpty()) {
+            System.out.println("Validation Error: Recipe must have at least one instruction.");
+            return false;
+        }
+        if (this.category == null) {
+            System.out.println("Validation Error: Recipe must have a category.");
+            return false;
+        }
+        return true;
+    }
+
 
     public void editRecipe(Recipe newRecipe, Recipe oldRecipe) {
         // Logic for editing a recipe
