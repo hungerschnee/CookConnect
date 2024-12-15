@@ -6,13 +6,13 @@ public class Recipe {
     private String title;
     private String description;
     private String prepTime;
+    private String cookTime;
     private User creator;
     //    private List<Binary> image; // too complex for implementation
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Instruction> instructions;
     private ArrayList<Review> reviews;
     private Category category;
-    private String cookTime;
     private RecipeState recipeState;
 
     // Constructors
