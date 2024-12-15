@@ -153,6 +153,18 @@ public class Recipe {
             System.out.println("Validation Error: Recipe title cannot be empty.");
             return false;
         }
+        if (this.description == null || this.description.trim().isEmpty()) {
+            System.out.println("Validation Error: Recipe description cannot be empty.");
+            return false;
+        }
+        if (this.prepTime == null || this.prepTime.trim().isEmpty()) {
+            System.out.println("Validation Error: Recipe prepTime cannot be empty.");
+            return false;
+        }
+        if (this.cookTime == null || this.cookTime.trim().isEmpty()) {
+            System.out.println("Validation Error: Recipe cookTime cannot be empty.");
+            return false;
+        }
         if (this.ingredients == null || this.ingredients.isEmpty()) {
             System.out.println("Validation Error: Recipe must have at least one ingredient.");
             return false;
